@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError, map, retry } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,8 @@ export class ApiService {
     return this.http.get(this.apiUrl).pipe(
       map((res: any) => {
         return res;
-      }),retry(3),
+      }),
+      retry(3),
       catchError((err: HttpErrorResponse) => {
         return throwError(() => err);
       })
@@ -43,9 +44,14 @@ export class ApiService {
   }
 
   searchData(searchText: string): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map(data => data.filter(item => item.employee_name.toLowerCase().includes(searchText.toLowerCase())))
-    );
+    return this.http
+      .get<any[]>(this.apiUrl)
+      .pipe(
+        map((data) =>
+          data.filter((item) =>
+            item.employee_name.toLowerCase().includes(searchText.toLowerCase())
+          )
+        )
+      );
   }
-
 }
