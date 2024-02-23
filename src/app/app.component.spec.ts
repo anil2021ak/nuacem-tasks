@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'nuacem-ui-tasks' title`, () => {
+  it(`should have the 'uiCrud' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('nuacem-ui-tasks');
+    expect(app.title).toEqual('uiCrud');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, nuacem-ui-tasks');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, uiCrud');
   });
 });
